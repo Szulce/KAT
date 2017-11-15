@@ -1,0 +1,92 @@
+#include<iostream>
+#include<cmath>
+#include<string>
+#include<vector>
+
+using namespace std;
+
+int main()
+{
+    int zakres[6];
+        zakres[0]=1024;
+         zakres[1]=256;
+          zakres[2]=64;
+           zakres[3]=16;
+            zakres[4]=4;
+            zakres[5]=1;
+            int T[1026];
+    int N;
+    cin>>N;
+    for(int i=0;i<N;i++)
+    {
+
+        string a,b;
+
+        for(long int j=0;j<1026;j++){T[j]=0;}
+
+        int current=0,zak=0,cnt=0;
+            cin>>a>>b;
+
+        for(int j=0;j<a.size();j++)
+        {
+
+            if(cnt>3){cnt=0;zak--;}
+            if(a[j]=='p'){zak++;cnt=0;}
+            else if(a[j]=='f' || a[j]=='e'){
+
+                                            if(a[j]=='f')
+                                                {
+                                                 for( int y=current;y<(current+zakres[zak]);y++)
+                                                 {
+                                                     T[y]=1;
+                                                 }
+
+                                                }
+
+                                                cnt++;
+                                            current+=zakres[zak];
+                                            }
+
+        }
+
+        current=0,zak=0,cnt=0;
+
+         for( int j=0;j<b.size();j++)
+        {
+            if(cnt>3){ cnt=0;zak--;}
+            if(b[j]=='p'){zak++;cnt=0;}
+             else if(b[j]=='f' || b[j]=='e'){
+                                             if(b[j]=='f')
+                                                {
+
+                                                 for(int y=current;y<(current+zakres[zak]);y++)
+                                                 {
+
+                                                     T[y]=1;
+                                                 }
+
+                                                }
+
+
+                                            current+=zakres[zak];
+                                            cnt++;
+
+                                            }
+
+        }
+
+
+        int pix=0;
+        for(int t=0;t<1026;t++)
+        {
+
+            if(T[t]==1)pix++;
+        }
+
+cout<<"There are "<<pix<<" black pixels."<<endl;
+
+
+    }
+
+
+    return 0;}

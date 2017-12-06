@@ -1,0 +1,38 @@
+#include<iostream>
+#include<algorithm>
+#include<set>
+#include<iterator>
+#include<fstream>
+using namespace std;
+int main()
+{
+    fstream plik1;
+    plik1.open("wynik.txt",ios::out);
+    set<int>Freq;
+    set<int>::iterator it;
+    int a,c,m,x,q,n;
+    while(cin>>a>>c>>m>>x>>q>>n)
+    {
+        int *wynik=new int[m+1];
+        wynik[0]=x;
+        int i=1;
+        while(i<m+1)
+        {
+            wynik[i]=((wynik[i-1]*a)+c)%m;
+            if((it=Freq.find(wynik[i]))!=Freq.end())break;
+            else Freq.insert(wynik[i]);
+            i++;
+        }
+
+        sort(wynik,wynik+m+1);
+
+        for(int i=0;i<q;i++)
+        {
+            int p;
+            cin>>p;
+            if(n>m && p>Freq.size()){plik1<<wynik[p-(n/Freq.size())]<<endl;}
+            else plik1<<wynik[(p-1)]<<endl;
+        }
+    }
+    return 0;
+}

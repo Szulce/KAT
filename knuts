@@ -1,0 +1,32 @@
+#include<iostream>
+#include<vector>
+#include<iterator>
+#include<string>
+using namespace std;
+
+int main()
+{
+string a;
+while(cin>>a)
+{
+   // perm(a[0],a[1],a);
+   vector<string> input,out;
+   for(int i=0;i<a.length();i++)
+    {
+        char l= a[i];
+        out.clear();
+
+       // vector<string>::iterator it;
+        for(int j=0;j<input.size();j++)
+        {
+            for(int pos=0;pos<=i;pos++)
+            {
+                //generuj
+                out.push_back(input[j].insert(pos,l));
+            }
+        }
+        out.swap(input);
+
+   }
+}
+return 0;}

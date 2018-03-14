@@ -1,0 +1,73 @@
+#include<iostream>
+#include<vector>
+#include<set>
+#include<iterator>
+using namespace std;
+class slowo
+{
+    public:
+   // bool dominant;
+    string litery;
+    int T[26];
+
+    slowo()
+    {
+        for(int i=0;i<26;i++)
+        {
+            T[i]=0;
+        }
+       // dominant=false;
+    }
+
+};
+int main()
+{
+    int Max[26];
+    
+     for(int i=0;i<26;i++)
+        {
+            Max[i]=0;
+        }
+    vector<slowo> S;
+    set<string> Wynik;
+    set<string>::iterator it;
+    string s;
+    while(cin>>s)
+    {
+        slowo A;
+        A.litery = s;
+        for(int i=0;i<s.length();i++)
+        {
+            A.T[s[i]-97]+=1;//lub97
+
+        }
+        S.push_back(A);
+         for(int i=0;i<26;i++)
+        {
+           if(Max[i]<A.T[i])Max[i]=A.T[i];
+        }
+
+
+    }
+
+    for(int i=0;i<S.size();i++)
+    {
+
+        for(int j=0;j<26;j++)
+        {
+            if(S[i].T[j]==Max[j])
+            {
+                Wynik.insert(S[i].litery);
+                cout<<S[i].litery<<endl;
+                }
+        }
+    }
+
+    for(it=Wynik.begin();it!=Wynik.end();it++)
+    {
+        cout<<*it<<endl;
+    }
+
+
+    return 0;
+}

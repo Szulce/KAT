@@ -1,0 +1,50 @@
+#include<iostream>
+
+using namespace std;
+int main()
+{
+    int karty[5];
+    karty[0]=1;
+    karty[1]=10;
+    karty[2]=100;
+    karty[3]=1000;
+    karty[4]=10000;
+    int N,M;
+    while(cin>>N>>M)
+    {
+        int pkt=0;
+        for(int i=0;i<M;i++)
+        {
+            int B,Suma=0;
+            bool succes=false;
+            int *Gracz = new int[N];
+            cin>>B;
+            for(int j=0;j<N;j++)
+            {
+                cin>>Gracz[j];
+                Suma+=Gracz[j];
+            }
+            if(Suma<=B){succes=true;}
+
+            Suma-=Gracz[0];
+            if(Suma<B){
+                       for(int f=4;f>=0;f--)
+                       {
+
+                           if(Suma+karty[f]<=B){ pkt+=karty[f];break;}
+                       }
+
+                      if(succes){pkt-=Gracz[0];}
+
+            }
+            delete[]Gracz;
+
+        }
+        cout<<pkt<<endl;
+
+    }
+
+
+
+    return 0;
+}

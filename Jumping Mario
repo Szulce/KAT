@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+int main(){
+int N,M;
+cin>>M;
+for(int h=0;h<M;h++)
+{cin>>N;
+int *T=new int ;
+for(int j=0;j<N;j++){
+    cin>>T[j];
+}
+int low=0,high=0;
+for(int i=0;i<N-1;i++)
+{
+    if(T[i]<T[i+1])high++;
+    else if(T[i]>T[i+1]) low++;
+}
+cout<<"Case"<<h+1<<": "<<high<<" "<<low<<endl;}
+return 0;}

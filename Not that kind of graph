@@ -1,0 +1,103 @@
+#include<iostream>
+#include<string>
+using namespace std;
+struct pozycja
+{
+    int x;
+    int y;
+};
+
+
+int main()
+{
+    int N;
+    cin>>N;
+
+    for(int i=0; i<N; i++)
+    {
+        string D;
+        cin>>D;
+            char W1[102][102];
+            int d=D.length();
+        for(int a=0; a<2*d; a++)
+        {
+            for(int b=0; b<d+3; b++)
+            {
+                W1[a][b]=' ';
+            }
+        }
+        pozycja z;
+        z.x=2;
+        z.y=d;
+        int MIN=d;
+        int MAX=d;
+        int d_x=d+3;
+
+        for(int a=0; a<2*d; a++)
+        {
+            W1[a][0]='|';
+        }
+
+        for(int o=0; o<d; o++)
+        {
+            if(D[o]=='R')
+            {
+                W1[z.y][z.x]='/';
+                 if(MAX>z.y)
+                {
+                    MAX=z.y;
+                }
+
+                z.y--;
+                z.x++;
+
+                if(o<d-1 && D[o+1]=='F')
+                {
+                    z.y++;
+                }
+
+            }
+            else if(D[o]=='C')
+            {
+                 if(MAX>z.y)
+                {
+                    MAX=z.y;
+                }
+                W1[z.y][z.x]='_';
+                z.x++;
+            }
+            else
+            {
+                if(o>0 && D[o-1]=='C'){z.y++;}
+                W1[z.y][z.x]='\\';
+                z.x++;
+                if(o<d-1 && D[o+1]=='F')
+                {
+                    z.y++;
+                }
+                if(MIN<z.y)
+                {
+                    MIN=z.y;
+                }
+            }
+        }
+        W1[MIN+1][0]='+';
+        for(int r=1; r<d_x; r++)
+        {
+            W1[MIN+1][r]='-';
+        }
+
+       cout<<"Case #"<< i+1<<":"<<endl;
+       for(int a=MAX; a<MIN+2; a++)
+        {
+            for(int b=0; b<d+3; b++)
+            {
+                cout<<W1[a][b];
+
+            }
+            cout<<endl;
+        }
+
+    }
+    return 0;
+}

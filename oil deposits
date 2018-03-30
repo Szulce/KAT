@@ -1,0 +1,80 @@
+#include<iostream>
+using namespace std;
+class pt
+{
+    public:
+    char co;
+    bool odwiedzony;
+
+    pt()
+    {
+        odwiedzony = false;
+    }
+
+};
+class GRI
+{
+public :
+ pt GRID[100][100];
+
+
+ int oil(int m,int n)
+ {
+ int il=0;
+         for(int i=0;i<m;i++)
+        {
+           for(int j=0;j<n;j++)
+           {
+            if(GRID[i][j].co == '@' && GRID[i][j].odwiedzony != true)
+            {
+                GRID[i][j].odwiedzony=true;
+                il++;
+                odwie(i,j);
+
+
+
+            }
+           }
+        }
+        return il;
+ }
+
+ void odwie(int i,int j)
+ {
+    if(GRID[i+1][j].co == '@' && GRID[i+1][j].odwiedzony != true ){GRID[i+1][j].odwiedzony=true; odwie(i+1,j); }
+    if(GRID[i+1][j+1].co == '@' && GRID[i+1][j+1].odwiedzony != true ){GRID[i+1][j+1].odwiedzony=true; odwie(i+1,j+1); }
+    if(GRID[i+1][j-1].co == '@' && GRID[i+1][j-1].odwiedzony != true ){GRID[i+1][j-1].odwiedzony=true; odwie(i+1,j-1); }
+    if(GRID[i][j+1].co == '@' && GRID[i][j+1].odwiedzony != true ){GRID[i][j+1].odwiedzony=true; odwie(i,j+1); }
+    if(GRID[i][j-1].co == '@' && GRID[i][j-1].odwiedzony != true ){GRID[i][j-1].odwiedzony=true; odwie(i,j-1); }
+    if(GRID[i-1][j].co == '@' && GRID[i-1][j].odwiedzony != true ){GRID[i-1][j].odwiedzony=true; odwie(i-1,j); }
+    if(GRID[i-1][j+1].co == '@' && GRID[i-1][j+1].odwiedzony != true ){GRID[i-1][j+1].odwiedzony=true; odwie(i-1,j+1); }
+    if(GRID[i-1][j-1].co == '@' && GRID[i-1][j-1].odwiedzony != true ){GRID[i-1][j-1].odwiedzony=true; odwie(i-1,j-1); }
+
+ }
+};
+
+
+
+int main()
+{
+
+    while(1)
+    {
+        GRI G;
+        int m,n;
+        cin>>m>>n;
+        if(m==0)break;
+        for(int i=0;i<m;i++)
+        {
+           for(int j=0;j<n;j++)
+           {
+            cin>>G.GRID[i][j].co;
+           }
+        }
+        int ol;
+        ol=G.oil(m,n);
+cout<<ol<<endl;
+
+    }
+
+return 0;}

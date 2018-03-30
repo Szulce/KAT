@@ -1,0 +1,54 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+struct Road
+{
+    vector<int>Way;
+    bool death;
+
+};
+int main()
+{
+int ln;
+while(cin>>ln)
+{
+    Road *D=new Road[ln];
+
+    for(int i=0;i<ln;i++)
+    {
+
+        int n;
+        cin>>n;
+        if(n==0)
+            {D[i].death=true;}
+        else{
+        for(int j=0;j<n;j++)
+        {int a;
+            cin>>a;
+        D[i].Way.push_back(a);
+        }
+        }
+
+    }
+
+
+    int *wp=new int[ln];
+    for(int u=0;u<ln;u++)wp[u]=0;
+    wp[0]=1;
+    int wynik=0;
+    for(int i=0;i<ln;i++)
+    {
+
+        if(D[i].death){wynik+=wp[i];}
+        else{
+        for(int j=0;j<D[i].Way.size();j++)
+        {
+            wp[D[i].Way[j]]+=wp[i];
+        }
+        }
+    }
+
+    cout<<wynik<<endl;
+
+}
+return 0;}

@@ -1,0 +1,72 @@
+#include<iostream>
+#include<iterator>
+#include<set>
+using namespace std;
+struct alko
+{
+    string name;
+    set<alko*> moc;
+    bool was;
+};
+int fin(string nazwa,alko ALKO[],int n)
+{
+    for(int i=0;i<n;i++)
+        {
+            if(ALKO[i].name==nazwa)return i;
+        }
+        return -1;
+}
+void bevar(int n,alko ALKO[])
+{
+    set<alko*>::iterator it;
+    for(int i=0;i<n;i++)
+    {
+        if(ALKO[i].moc.empty() && ALKO[i].was==false)
+        {
+            cout<<" "<<ALKO[i].name;
+            ALKO[i].was=true;
+            for(int j=0;j<n;j++)
+            {
+                if((it=ALKO[j].moc.find(&ALKO[i]))!=ALKO[j].moc.end())
+                {
+                        ALKO[j].moc.erase(&ALKO[i]);
+                }
+            }
+            bevar(n,ALKO);
+        }
+    }
+}
+int main()
+{
+    int tc=1;
+    int N;
+    while(cin>>N)
+    {
+
+        int M;
+
+        alko *ALKO=new alko[N];
+        for(int i=0;i<N;i++)
+        {
+            cin>>ALKO[i].name;
+            ALKO[i].was=false;
+        }
+        cin>>M;
+        for(int i=0;i<M;i++)
+        {
+            string B1,B2;
+            int b1,b2;
+            cin>>B1>>B2;
+            b1=fin(B1,ALKO,N);
+            b2=fin(B2,ALKO,N);
+            ALKO[b2].moc.insert(&ALKO[b1]);
+        }
+    cout<<"Case #"<<tc<<": Dilbert should drink beverages in this order:";
+    bevar(N,ALKO);
+    tc++;
+    cout<<"."<<endl<<endl;
+
+
+    }
+    return 0;
+}

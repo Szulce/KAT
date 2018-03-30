@@ -1,0 +1,22 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main()
+{
+    int tabela[77];
+    tabela[0]=1;
+    tabela[1]=2;
+    tabela[2]=2;
+    for(int i=3;i<77;i++)
+    {
+        tabela[i]=tabela[i-2]+tabela[i-3];
+    }
+
+    int a;
+    while(cin>>a)
+    {
+               cout<<tabela[a-1]<<endl;
+    }
+
+    return 0;
+}

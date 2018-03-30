@@ -1,0 +1,66 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class Ulamek
+{   private:
+
+        int l;
+        int m;
+
+    public:
+
+    Ulamek (int a,int b)
+    {
+        if(b!=0){
+        this->l=a;
+        this->m=b;}
+        else cout<<"invalid data";
+    }
+
+void lancuch()
+{
+    vector<int> L;
+
+    if(this->l == 1){L.push_back(0); swap(this->l,this->m);}
+
+
+    while(this->l!=1){
+
+        //wycagnij calosc wrzuc calosc na vektor
+                int c = 0;
+        while(this->l > this->m)
+        {
+            this->l=this->l - this->m;
+            c++;
+        }
+        L.push_back(c);
+        //odwroc to co zostalo
+        swap(this->l,this->m);
+    }
+    int k=L.back()+1;
+    L.pop_back();
+    L.push_back(k);
+
+
+
+    cout<<"["<<L[0]<<";";
+    for(int i=1;i<L.size()-1;i++){
+        cout<<L[i]<<",";
+    }
+    cout<<L[L.size()-1]<<"]"<<endl;
+
+}
+
+};
+
+int main()
+{
+    int x,y;
+while(cin>>x>>y){
+    Ulamek u1(x,y);
+    u1.lancuch();
+
+}
+
+return 0;}

@@ -1,0 +1,38 @@
+#include<iostream>
+#include<set>
+#include<iterator>
+using namespace std;
+
+int main()
+{
+
+    int T;
+    cin>>T;
+    for(int i=0;i<T;i++)
+    {
+        string A;
+        int licz;
+        set<char>S;
+        set<char>::iterator it;
+        cin>>A;
+        for(int j=0;j<A.size();j++)
+        {
+            S.insert(A[j]);
+        }
+        licz=S.size()-A.size();
+        it=S.begin();
+        if(licz<0){while(licz!=0){
+                                    cout<<*it;
+
+                                    licz++;}};
+        for(it;it!=S.end();it++)
+        {
+            cout<<*it;
+
+        }
+        cout<<endl;
+
+
+    }
+    return 0;
+}

@@ -1,0 +1,204 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+template <int k> class IntMod{
+public:
+   int Value;
+
+IntMod<k>()
+{
+}
+
+IntMod<k>(int x)
+{
+     Value=(x%k);
+    if(Value<0)Value+=k;
+
+}
+IntMod<k> operator+(int x)
+{
+    Value+=x;
+    Value%=k;
+    if(Value<0)Value+=k;
+
+}
+
+IntMod<k> operator-(int x)
+{
+     Value-=x;
+      Value%=k;
+     if(Value<0)Value+=k;
+  }
+
+IntMod<k> operator=(IntMod<k> x)
+{
+    Value=x.Value;
+    if(Value<0)Value+=k;
+
+}
+
+void putout()
+{
+    cout<<Value;
+}
+};
+
+template <class T > class Matrix
+{
+    public:
+    T TAB[10][10];
+    int s;
+
+    Matrix<T>(int n)
+    {
+        s=n;
+    }
+
+
+
+    void R(int rone,int rtwo)
+    {
+        IntMod<10> RowZ;
+        for(int i=0;i<s;i++)
+          {RowZ=TAB[rone-1][i];
+                TAB[rone-1][i]=TAB[rtwo-1][i];
+                TAB[rtwo-1][i]=RowZ;}
+
+    }
+    void C(int cone,int ctwo)
+    {
+        IntMod<10> ColZ;
+        for(int i=0;i<s;i++){
+            ColZ=TAB[i][cone-1];
+            TAB[i][cone-1]=TAB[i][ctwo-1];
+            TAB[i][ctwo-1]=ColZ;
+                    }
+
+    }
+    void I()
+    {
+        for(int i=0;i<s;i++)
+        {
+            for(int j=0;j<s;j++)
+            {
+
+               TAB[i][j]+1;
+
+            }
+        }
+    }
+    void D()
+    {
+
+        for(int i=0;i<s;i++)
+        {
+            for(int j=0;j<s;j++)
+            {
+                TAB[i][j]-1;
+            }
+        }
+    }
+    void Tr()
+    {
+         IntMod<10> Z;
+        for(int i=0;i<s;i++){
+                for(int j=i;j<s;j++)
+                {
+                    if(j!=i){
+                    Z=TAB[i][j];
+                    TAB[i][j]=TAB[j][i];
+                    TAB[j][i]=Z;
+                    }
+                }
+
+            }
+    }
+
+    void Poka()
+    {
+        for(int i=0;i<s;i++)
+        {
+            for(int j=0;j<s;j++)
+            {
+               TAB[i][j].putout();
+            }cout<<endl;
+        }
+    }
+};
+int main(){
+
+int T;
+cin>>T;
+for(int i=0;i<T;i++)
+{
+    int N;
+    cin>>N;
+    Matrix< IntMod<10> > MX(N);
+
+    string ROW;
+    IntMod<10> f;
+    for(int h=0;h<N;h++)
+    {cin>>ROW;
+
+    for(int j=0;j<ROW.size();j++)//tu moze byc -1
+      {
+
+       f.Value=(int)ROW[j]-48;
+        MX.TAB[h][j]=f;
+
+        }
+    }
+
+    int M;
+    cin>>M;
+    for(int j=0;j<M;j++)
+    {
+        string a;
+        cin>>a;
+
+        switch(a[0])
+        {
+        case 'r':
+            {
+                int o,t;
+                cin>>o>>t;
+                MX.R(o,t);
+
+            }
+            break;
+        case 'c':
+            {
+                int o,t;
+                cin>>o>>t;
+                MX.C(o,t);
+
+            }
+            break;
+        case 'i':
+        {
+            MX.I();
+            }
+            break;
+        case 'd':
+        {
+            MX.D();
+           }
+            break;
+        case 't':
+        {
+            MX.Tr();
+            }
+            break;
+        }
+
+
+    }
+    cout<<"Case #"<<i+1<<endl;
+
+MX.Poka();
+
+
+}
+
+return 0;}

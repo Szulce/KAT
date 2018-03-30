@@ -1,0 +1,75 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+struct przyc
+{
+ int nr;
+ int ile;
+
+};
+int main()
+{
+
+  char tab[10][4];
+  tab[0][0]='.';
+  tab[0][1]=',';
+  tab[0][2]='?';
+  tab[0][3]='"';
+  tab[1][0]='a';
+  tab[1][1]='b';
+  tab[1][2]='c';
+  tab[2][0]='d';
+  tab[2][1]='e';
+  tab[2][2]='f';
+  tab[3][0]='g';
+  tab[3][1]='h';
+  tab[3][2]='i';
+  tab[4][0]='j';
+  tab[4][1]='k';
+  tab[4][2]='l';
+  tab[5][0]='m';
+  tab[5][1]='n';
+  tab[5][2]='o';
+  tab[6][0]='p';
+  tab[6][1]='q';
+  tab[6][2]='r';
+  tab[6][3]='s';
+  tab[7][0]='t';
+  tab[7][1]='u';
+  tab[7][2]='v';
+  tab[8][0]='w';
+  tab[8][1]='x';
+  tab[8][2]='y';
+  tab[8][3]='z';
+
+
+
+int t;
+cin>>t;
+for(int i=0;i<t;i++)
+{
+    int L;
+    cin>>L;
+    przyc *P= new przyc[L];
+for(int j=0;j<L;j++)
+{
+    cin>>P[j].nr;
+}
+vector<char> slowo;
+for(int j=0;j<L;j++)
+{
+    cin>>P[j].ile;
+    if(P[j].nr==0){
+    slowo.push_back(' ');
+    }
+    else  slowo.push_back(tab[P[j].nr-1][P[j].ile-1]);
+}
+for(int h=0;h<L;h++)
+{
+cout<<slowo[h];
+}cout<<endl;
+
+
+}
+
+return 0;}

@@ -1,0 +1,50 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    int Tab[7];
+    Tab[0]=1;
+    Tab[1]=66;
+    Tab[2]=56;
+    Tab[3]=96;
+    Tab[4]=36;
+    Tab[5]=76;
+    Tab[6]=16;
+    int T;
+    cin>>T;
+    for(int i=0; i<T; i++)
+    {
+        string n;
+        cin>>n;
+
+        if(n.length()==1 && n[0]<55)
+        {
+
+            cout<<Tab[int(n[0])-48]<<endl;
+        }
+        else if(n.length()==1)
+        {
+            int m =(int(n[0])-48);
+
+            m=((m+2)%4)+1;
+
+            cout<<Tab[m]<<endl;
+        }
+        else
+        {
+
+            int m = (int(n[n.length()-1])-48)+10*(int(n[n.length()-2])-48);
+
+
+            m=(m%5);
+            if(m==1)m=6;
+            else if(m==0)m=5;
+
+            cout<<Tab[m]<<endl;
+
+        }
+
+    }
+    return 0;
+    }

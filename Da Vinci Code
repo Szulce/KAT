@@ -1,0 +1,69 @@
+#include<iostream>
+#include<cmath>
+#include <stdlib.h>
+#include <set>
+using namespace std;
+struct one
+{
+    int cyf;
+    char lit;
+};
+
+int compare(const void * a,const void* b)
+{
+    if((*(one*)a).cyf<(*(one*)b).cyf)return -1 ;
+    else return 1;
+}
+int main()
+{
+    int T;
+    cin>>T;
+    for(int i=0;i<T;i++)
+    {
+        int N;
+        cin>>N;
+        one *Z=new one[N+1];
+        for(int j=0;j<N;j++)//tu sie zgibila
+        {
+            cin>>Z[j].cyf;
+        }
+        string TEXT="";
+        getline(cin,TEXT);
+        getline(cin,TEXT);
+
+
+       int e=0;
+        for(int g=0;g<TEXT.size();g++)
+        {
+            if(TEXT[g]>64 && TEXT[g]<91)
+            {
+                if(e==N)break;
+               Z[e].lit=TEXT[g];e++;
+            }
+        }
+
+
+//1
+        if(N>=2) qsort (Z, N, sizeof(one),compare);
+
+         int n=0,a=1,b=2,c;
+         if(Z[n].cyf==1){cout<<Z[n].lit;n++;}
+         else cout<<" ";
+
+         if(Z[n].cyf==2){cout<<Z[n].lit; n++;}
+         else cout<<" ";
+
+         while(n!=N)
+         {
+          if(a+b == Z[n].cyf){cout<<Z[n].lit; n++;}
+          else {cout<<" ";}
+
+          c=b;
+          b=a+b;
+          a=c;
+         }
+         cout<<endl;
+
+    }
+    return 0;
+}

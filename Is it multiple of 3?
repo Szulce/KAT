@@ -1,0 +1,19 @@
+#include<iostream>
+
+using namespace std;
+int main()
+{
+    int te;
+    cin>>te;
+    for(int i=0;i<te;i++)
+    {
+    unsigned long long int l,w;
+    cin>>l;
+    w=(((l+1)*l)/2);
+    if(w%3==0)cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+    }
+
+return 0;
+
+}

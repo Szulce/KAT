@@ -1,0 +1,37 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+
+
+int N;
+cin>>N;
+for(int i=0;i<N;i++)
+{
+    int M,C,Y;
+    string Pixel;
+    cin>>M>>Y>>C;
+    cin>>Pixel;
+
+    for(int i=0;i<Pixel.size();i++)
+    {
+         
+        if(Pixel[i]=='M'){M--;}
+        else if(Pixel[i]=='C'){C--;}
+        else  if(Pixel[i]=='Y'){Y--;}
+        else if(Pixel[i]=='B'){M--;C--;Y--;}
+        else if(Pixel[i]=='G'){Y--;C--;}
+        else if(Pixel[i]=='V'){M--;C--;}
+        else if(Pixel[i]=='R'){Y--;M--;}
+        
+
+    }
+    if(M<0 || C<0 || Y<0)cout<<"NO"<<endl;
+    else {cout<<"YES "<<M<<" "<<Y<<" "<<C<<endl; }
+
+}
+
+
+return 0;
+}

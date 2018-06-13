@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{
+	vector<pair<int,int>> ev;
+	int N;	
+	while(1){
+	cin>>N;
+	if(N==0)break;
+	ev.resize(2*N);
+	int x,y;
+	for(int n=0;n<N;n++)
+	{
+	cin>>x>>y;
+	ev[2*n] = make_pair(x-y,-1);
+	ev[2*n+1]= make_pair(x+y,+1);
+	}
+	sort(ev.begin(),ev.end());
+	int ans=0,current=0;
+	for(auto e:ev)
+	{
+	current-=e.second;
+	ans=max(ans,current);
+	}
+	cout<<ans<<endl;
+}
+return 0;
+}

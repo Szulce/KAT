@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int s,w;
+    while(cin>>s>>w)
+    {
+        float vs=0,vw=0;
+        do
+        {
+            vs++;
+            vw+=((float)s/w);
+        }while(vs-vw<1);
+        cout<<vs<<endl;
+    }
+    return 0;
+}

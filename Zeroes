@@ -1,0 +1,30 @@
+#include<iostream>
+
+using namespace std;
+
+
+int main()
+{
+
+  unsigned long long low,high;
+
+    while(cin>>low>>high)
+    {
+        
+        if(low==0 && high ==0)
+        {
+            break;
+        }
+        else
+        {
+            if(high==0)cout<<0<<endl;
+            else{
+            low=low/5+1;
+		high=high/5+1;
+             cout<<high-low+1<<endl;
+            }
+        }
+
+    }
+    return 0;
+}

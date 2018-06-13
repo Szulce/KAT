@@ -1,0 +1,45 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+struct tabela
+{
+    int v;
+    int ma;
+    int niema;
+};
+
+int main()
+{
+
+int n,c;
+while(cin>>n)
+{
+    cin>>c;
+     tabela *w= new tabela[n];
+    int zm;
+    for(int i=0;i<n;i++)
+    {
+        cin>>w[i].v;
+        if(i==0)
+        {
+            w[0].niema=0;
+            w[0].ma=-w[0].v-c;
+
+        }
+        else
+        {
+            zm = max(w[i-1].ma,(w[i-1].niema-w[i].v-c));
+            //cout<<w[i-1].ma<<" "<<w[i-1].niema<<" "<<(w[i].v+w[i-1].ma)<<endl;
+            w[i].niema=max(w[i-1].niema,(w[i-1].ma+w[i].v));
+            w[i].ma=zm;
+        }
+       // cout<<w[i].ma<<" "<<w[i].niema<<endl;
+    }
+
+    int war = max(w[n-1].ma,w[n-1].niema);
+    cout<<war<<endl;
+
+
+}
+
+return 0;}

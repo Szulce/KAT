@@ -1,0 +1,116 @@
+#include<iostream>
+
+using namespace std;
+struct pole
+{
+    long  long w;
+    long long k;
+    long long sl;
+    long long sp;
+};
+int main()
+{
+    pole Kwadrat[20][20];
+    long i=1;
+    long long n;
+    while(i!=0)
+    {
+        cin>>i;
+        if(i==0)break;
+            bool mag = true;
+            long long liczba;
+
+        for(int j=0; j<i; j++)
+        {
+
+
+            for(int f=0; f<i; f++)
+            {
+                cin>>n;
+                if(n==0 ){mag = false; break;}
+                if(i==1 ){mag = true;liczba = n; break;}
+
+
+                if(f==0)
+                {
+                    Kwadrat[j][f].w = n;
+                }
+                else
+                {
+                    Kwadrat[j][f].w = n+Kwadrat[j][f-1].w;
+                }
+                if(j==0)
+                {
+                    Kwadrat[j][f].k=n;
+
+                }
+                else
+                {
+                    Kwadrat[j][f].k=n+Kwadrat[j-1][f].k;
+                }
+
+                if(f==0 && j==0)
+                {
+                    Kwadrat[0][0].sl=n;
+
+                }
+                else if( j==f)
+                {
+                    Kwadrat[j][f].sl=n+Kwadrat[j-1][f-1].sl;
+
+                  if(j==(int)i/2)
+                    {
+                        Kwadrat[j][f].sp=n+Kwadrat[j-1][f+1].sp;
+                    }
+                }
+                else if(j==0 && f==i-1)
+                {
+
+                    Kwadrat[0][f].sp=n;
+                    liczba = Kwadrat[0][f].w;
+                }
+                else if(j!=f && j+f==i-1)
+                {
+
+                    Kwadrat[j][f].sp=n+Kwadrat[j-1][f+1].sp;
+                }
+
+
+
+
+                //to musi byc na samym koncu
+                if(f==i-1 && Kwadrat[j][f].w!=liczba)
+                {
+
+                    mag = false;
+                }
+                if(j==i-1  && Kwadrat[j][f].k!=liczba)
+                {
+
+                    mag = false;
+                }
+                if(j==i-1)
+                {
+                    if(f==i-1 && Kwadrat[j][f].sl!=liczba)
+                    {
+
+                        mag =false;
+                    }
+                    if(f==0 && Kwadrat[j][f].sp!=liczba)
+                    {
+                        mag =false;
+                    }
+                }
+
+            }
+
+
+        }
+        if(mag)cout<<"TAK "<<liczba<<endl;
+            else cout<<"NIE"<<endl;
+
+
+    }
+    return 0;
+}
+

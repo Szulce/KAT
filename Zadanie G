@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    long long kroki,minuss=1,yp=0,ym=0,xm=0,xp=0;
+    cin>>kroki;
+    while(1)
+    {
+
+
+       if(kroki>minuss)
+       {
+           yp+=minuss;
+           kroki-=minuss;
+
+       }
+       else{
+            xp+=kroki;
+
+            break;
+       }
+        if(kroki>minuss)
+       {
+           xm+=minuss;
+           kroki-=minuss;
+           minuss++;
+
+       }else
+       {
+           xm+=kroki;
+
+           break;
+       }
+        if(kroki>minuss)
+       {
+           ym+=minuss;
+           kroki-=minuss;
+
+
+       }else{
+           ym+=kroki;
+
+           break;
+       }
+        if(kroki>minuss)
+       {
+           xp+=minuss;
+           kroki-=minuss;
+           minuss++;
+
+       }else{
+           xp+=kroki;
+
+           break;
+       }
+
+
+    }
+    cout<<xp-xm<<" "<<yp-ym<<endl;
+    return 0;
+}

@@ -1,0 +1,70 @@
+#include<iostream>
+#include<vector>
+#include<set>
+#include<iterator>
+#include<map>
+using namespace std;
+int main()
+{
+string s;
+while(1)
+{
+    cin>>s;
+
+    if(s=="#")break;
+    int *litery = new int[26];//do 26
+    map < char,int > slowo;
+   for(int i=0;i<26;i++)
+    {
+        litery[i]=0;
+
+    }
+    for(int i=0;i<s.size();i++)
+    {
+        litery[s[i]-97]+=1;
+       // slowo[s[i]] = i;
+       slowo.insert(pair<char,int>(s[i],i));
+    }
+
+    vector<char> literka;
+    set<char>lit;
+    set<char>::iterator it;
+    bool parzystosc= true;
+    for(int i=0;i<26;i++)
+    {
+
+        if(litery[i]==0)continue;
+        if(litery[i]%2!=0 ){
+
+                parzystosc = false;
+               // string ll= litery[i];
+            literka.push_back(s[slowo[(char)(i+97)]]);
+
+            lit.insert(s[slowo[(char)(i+97)]]);
+        }
+
+    }
+
+
+    if(!parzystosc)
+{
+        if(lit.size()!=1)
+        {
+
+            lit.erase(literka[literka.size()-1]);
+            /*for(int u=0;u<literka.size();u++)
+            {
+                cout<<literka[u];
+            } cout<<endl;*/
+            for(it=lit.begin();it!=lit.end();it++)
+            {
+                cout<<*it;
+            }
+           cout<<endl;
+        }
+    }
+
+}
+
+return 0;
+}

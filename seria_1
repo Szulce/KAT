@@ -1,0 +1,72 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+//globalna tablica
+    unsigned long int *fib=new unsigned long int[102];
+
+  void  uzupelnij()
+  {fib[0]=1;
+    fib[1]=1;
+    for(int i=2;i<102;i++)
+        {
+            fib[i]=fib[i-1]+fib[i-2];
+        }
+}
+
+unsigned long long int zamien(unsigned long long int a)
+{
+    unsigned long long int w=0;
+    int it=1;
+    while(a!=0){
+        w=w+(a%10)*fib[it];
+        a=a/10;
+        it++;
+    }
+    return w;
+}
+unsigned long long int lookf(int s)
+{
+       int i=0;
+      do{
+            i++;
+       } while(fib[i]<s);
+       if(fib[i]==s){return i;}
+       else{return i-1;}
+}
+
+unsigned long long int rozklad(unsigned long long int s)
+{
+
+      int p=lookf(s),d=s-fib[p];
+      unsigned long long int liczba=1;
+        p--;
+      if(d==0){
+
+      liczba=pow(10.0,p);
+           }
+      else{ int c=lookf(d)-1;
+
+      //zamiana
+     liczba=liczba*pow(10.0,p);
+     liczba=liczba+(pow(10.0,c));
+
+      }
+
+      return liczba;
+
+}
+
+int main(){
+unsigned long long int a,b;
+uzupelnij();
+while(cin>>a>>b){
+    a=zamien(a);
+    b=zamien(b);
+unsigned long long int suma=a+b;
+  suma=rozklad(suma);
+    cout<<suma<<endl;
+
+
+}
+delete[]fib;
+return 0;}
